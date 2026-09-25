@@ -1,5 +1,9 @@
 class_name Player extends CharacterBody2D
 
+#region /// Exports
+@export_range(1.0, 1000.0, 1.0) var run_speed := 150.0
+#endregion
+
 #region /// State machine variables
 var states : Array[PlayerState]
 var current_state : PlayerState :
@@ -37,6 +41,7 @@ func initialise_states() -> void:
 	for child in $States.get_children():
 		if child is PlayerState:
 			states.append(child)
+			child.player = self
 	if states.size()==0:
 		return
 	
@@ -47,16 +52,20 @@ func initialise_states() -> void:
 	# set current
 	change_state(current_state)
 	current_state.enter()
+	$Debugs/StateLabel.text = current_state.name
 	pass
 
 func change_state(new_state : PlayerState) -> void:
-	if new_state==null or new_state==current_state:
+	if new_state==null:
+		return
+	if new_state==current_state:
 		return
 	if current_state:
 		current_state.exit()
 	
 	states.push_front(new_state)
 	current_state.enter()	
+	$Debugs/StateLabel.text = current_state.name
 	states.resize(3)
 
 

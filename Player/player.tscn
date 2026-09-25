@@ -16,9 +16,11 @@ script = ExtResource("1_l8h54")
 [node name="States" type="Node" parent="."]
 
 [node name="Idle" type="Node" parent="States"]
+unique_name_in_owner = true
 script = ExtResource("2_4ntmi")
 
 [node name="Run" type="Node" parent="States"]
+unique_name_in_owner = true
 script = ExtResource("3_btcbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,3 +30,14 @@ texture = SubResource("PlaceholderTexture2D_hvfyp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_hvfyp")
+
+[node name="Debugs" type="Node2D" parent="."]
+
+[node name="StateLabel" type="Label" parent="Debugs"]
+offset_left = -20.0
+offset_top = -66.0
+offset_right = 20.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 10
+text = "label"
+horizontal_alignment = 1

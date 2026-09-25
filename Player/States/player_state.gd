@@ -5,7 +5,8 @@ var player : Player
 var next_state : PlayerState
 
 #region /// state references
-
+@onready var idle: PlayerStateIdle = %Idle
+@onready var run: PlayerStateRun = %Run
 #endregion
 
 func init() -> void:
@@ -17,6 +18,7 @@ func init() -> void:
 func enter() -> void:
 	"""
 	What happens when the state is entered
+	- play animations
 	"""
 	pass	
 	
@@ -30,6 +32,7 @@ func exit() -> void:
 func handle_input(event: InputEvent) -> PlayerState:
 	"""
 	What happens when an input is given
+	- do we need to change state?
 	"""
 	return next_state
 
