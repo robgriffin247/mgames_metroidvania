@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0yr1gxchtey1"]
+[gd_scene load_steps=8 format=3 uid="uid://b0yr1gxchtey1"]
 
 [ext_resource type="Script" uid="uid://cg3btxsliv3qj" path="res://Player/Scripts/player.gd" id="1_l8h54"]
 [ext_resource type="Script" uid="uid://bqk077h6dd3gb" path="res://Player/States/idle.gd" id="2_4ntmi"]
 [ext_resource type="Script" uid="uid://cuvj6vxv6hk11" path="res://Player/States/run.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://75kk2lw22wok" path="res://Player/States/jump.gd" id="4_k53q1"]
+[ext_resource type="Script" uid="uid://bge2eikdsmox0" path="res://Player/States/fall.gd" id="5_k53q1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hvfyp"]
 size = Vector2(18, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
-size = Vector2(16, 42)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
+radius = 8.0
+height = 42.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l8h54")
@@ -23,13 +26,23 @@ script = ExtResource("2_4ntmi")
 unique_name_in_owner = true
 script = ExtResource("3_btcbx")
 
+[node name="Jump" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("4_k53q1")
+metadata/_custom_type_script = "uid://muxsmmxo0k0i"
+
+[node name="Fall" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("5_k53q1")
+metadata/_custom_type_script = "uid://muxsmmxo0k0i"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)
 texture = SubResource("PlaceholderTexture2D_hvfyp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)
-shape = SubResource("RectangleShape2D_hvfyp")
+shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="Debugs" type="Node2D" parent="."]
 
