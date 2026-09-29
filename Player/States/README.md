@@ -5,7 +5,7 @@ A player can only ever be in one state and state is determined by inputs and fro
 ```
 ---- <- on_ground() & input.get_axis("left", "right") == 0.0 ----
 IDLE                                                         WALK
----- -> on_ground() & input.get_axis("left", "right") != 0.0 ----
+---- on_ground() & input.get_axis("left", "right") != 0.0 -> ----
 ```
 
 ``PlayerState`` is a blueprint class inherited by states; it is not attached to any nodes itself.
