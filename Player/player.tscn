@@ -1,19 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0yr1gxchtey1"]
+[gd_scene load_steps=10 format=3 uid="uid://b0yr1gxchtey1"]
 
 [ext_resource type="Script" uid="uid://cg3btxsliv3qj" path="res://Player/Scripts/player.gd" id="1_l8h54"]
 [ext_resource type="Script" uid="uid://bqk077h6dd3gb" path="res://Player/States/idle.gd" id="2_4ntmi"]
 [ext_resource type="Script" uid="uid://cuvj6vxv6hk11" path="res://Player/States/run.gd" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://75kk2lw22wok" path="res://Player/States/jump.gd" id="4_k53q1"]
 [ext_resource type="Script" uid="uid://bge2eikdsmox0" path="res://Player/States/fall.gd" id="5_k53q1"]
+[ext_resource type="Script" uid="uid://5ah22wdch3ml" path="res://Player/States/crouch.gd" id="6_fhl08"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hvfyp"]
 size = Vector2(18, 48)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
-radius = 8.0
-height = 42.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhl08"]
+size = Vector2(16, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtle1"]
+size = Vector2(16, 30)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_l8h54")
 
 [node name="States" type="Node" parent="."]
@@ -36,13 +41,23 @@ unique_name_in_owner = true
 script = ExtResource("5_k53q1")
 metadata/_custom_type_script = "uid://muxsmmxo0k0i"
 
+[node name="Crouch" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("6_fhl08")
+metadata/_custom_type_script = "uid://muxsmmxo0k0i"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)
 texture = SubResource("PlaceholderTexture2D_hvfyp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -21)
-shape = SubResource("CapsuleShape2D_k53q1")
+[node name="CollisionStand" type="CollisionShape2D" parent="."]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_fhl08")
+
+[node name="CollisionCrouch" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_vtle1")
+disabled = true
 
 [node name="Debugs" type="Node2D" parent="."]
 
@@ -54,3 +69,7 @@ offset_bottom = -48.0
 theme_override_font_sizes/font_size = 10
 text = "label"
 horizontal_alignment = 1
+
+[node name="OneWayPlatformRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 4)
+collision_mask = 2

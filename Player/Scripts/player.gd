@@ -14,14 +14,23 @@ var previous_state : PlayerState :
 	get: return states[1]		
 #endregion
 
+#region /// Onready Variables
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_stand: CollisionShape2D = $CollisionStand
+@onready var collision_crouch: CollisionShape2D = $CollisionCrouch
+@onready var one_way_platform_raycast: RayCast2D = $OneWayPlatformRaycast
+#endregion
+
 #region //// Standard variables
 var direction := Vector2.ZERO
 var gravity := get_gravity().y
 var gravity_multiplier := 1.0
 #endregion
 
+var _floor_snap_length := 2.0
 
 func _ready() -> void:
+	self.floor_snap_length = _floor_snap_length
 	initialise_states()
 	pass
 

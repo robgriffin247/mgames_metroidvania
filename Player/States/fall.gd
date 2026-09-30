@@ -1,10 +1,10 @@
 class_name PlayerStateFall extends PlayerState
 
-var coyote_time := 0.5
+var coyote_time := 0.08
 var coyote_timer := 0.0
 var fall_gravity_multiplier := 1.165 # Make this small to make low-gravity
 
-var jump_buffer_time := 0.2 # Allows jump to work if pressed just before leaving fall state
+var jump_buffer_time := 0.08 # Allows jump to work if pressed just before leaving fall state
 var jump_buffer_timer := 0.0
 
 func init() -> void:
