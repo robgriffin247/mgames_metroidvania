@@ -3,8 +3,10 @@ class_name Player extends CharacterBody2D
 const JUMP_INDICATOR = preload("uid://dkb3bgq33xpsd")
 
 #region /// Exports
-@export_range(1.0, 1000.0, 1.0) var run_speed := 150.0
+@export_range(1.0, 1000.0, 1.0) var run_speed := 190.0
+@export var max_fall_velocity := 600.0
 #endregion
+
 
 #region /// State machine variables
 var states : Array[PlayerState]
@@ -26,9 +28,10 @@ var previous_state : PlayerState :
 var direction := Vector2.ZERO
 var gravity := get_gravity().y
 var gravity_multiplier := 1.0
-#endregion
 
 var _floor_snap_length := 2.0
+#endregion
+
 
 func _ready() -> void:
 	self.floor_snap_length = _floor_snap_length
@@ -41,6 +44,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity.y += get_gravity().y * delta * gravity_multiplier
+	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
 	move_and_slide()
 	change_state(current_state.physics_process(delta))
 
