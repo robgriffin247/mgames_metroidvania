@@ -18,11 +18,11 @@ func enter() -> void:
 	else:
 		coyote_timer = coyote_time
 	player.add_debug_indicator(Color.YELLOW)
-	pass	
+
 	
 func exit() -> void:
 	player.gravity_multiplier = 1.0
-	pass
+
 	
 
 	

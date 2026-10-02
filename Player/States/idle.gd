@@ -6,8 +6,8 @@ func init() -> void:
 	pass
 
 func enter() -> void:
-	# play animation
-	pass	
+	player.animation_player.play("idle")
+
 	
 func exit() -> void:
 	pass
