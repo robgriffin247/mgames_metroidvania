@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 const JUMP_INDICATOR = preload("uid://dkb3bgq33xpsd")
 
 #region /// Exports
-@export_range(1.0, 1000.0, 1.0) var run_speed := 190.0
+@export_range(1.0, 1000.0, 1.0) var run_speed := 190.0 # 190
 @export var max_fall_velocity := 600.0
 #endregion
 
@@ -26,16 +26,18 @@ var previous_state : PlayerState :
 
 #region //// Standard variables
 var direction := Vector2.ZERO
-var gravity := get_gravity().y
 var gravity_multiplier := 1.0
 
-var _floor_snap_length := 2.0
+var _floor_snap_length := 3.0
 #endregion
 
 
 func _ready() -> void:
+	if get_tree().get_first_node_in_group("Player") != self:
+		self.queue_free()
 	self.floor_snap_length = _floor_snap_length
 	initialise_states()
+	self.call_deferred("reparent",get_tree().root)
 	pass
 
 func _process(delta: float) -> void:

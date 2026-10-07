@@ -1,0 +1,42 @@
+@tool
+@icon("res://General/Icons/level_bounds.svg")
+class_name LevelBounds extends Node2D
+
+@export_range( 480, 2048, 32, "tiles" ) var width := 480 :
+	set = _on_width_changed
+@export_range( 270, 2048, 32, "tiles" ) var height := 270 :
+	set = _on_height_changed
+
+func _ready() -> void:
+	z_index = 256
+	
+	if Engine.is_editor_hint():
+		return
+	
+	var camera : Camera2D = null
+	
+	while not camera:
+		await get_tree().process_frame
+		camera = get_viewport().get_camera_2d()
+	
+	camera.limit_left = int(global_position.x - 16)
+	camera.limit_right = int(global_position.x - 16) + width
+	camera.limit_top = int(global_position.y - 16)
+	camera.limit_bottom = int(global_position.y - 16) + height
+	
+	pass
+	
+
+func _draw() -> void:
+	if Engine.is_editor_hint():
+		var r := Rect2( Vector2(-16, -16), Vector2(width, height) )
+		draw_rect(r, Color(0.5,0.98,0.96, 0.9), false, 1)
+		draw_rect(r, Color(0.5,0.98,0.96, 0.4), false, 5)
+
+func _on_width_changed(new_width: int) -> void:
+	width = new_width
+	queue_redraw()
+
+func _on_height_changed(new_height: int) -> void:
+	height = new_height
+	queue_redraw()

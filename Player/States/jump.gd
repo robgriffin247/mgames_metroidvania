@@ -1,6 +1,6 @@
 class_name PlayerStateJump extends PlayerState
 
-var jump_velocity := 450.0
+var jump_velocity := 450.0 # 450
 
 func init() -> void:
 	pass

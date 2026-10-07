@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="MGames Metroidvania"
-run/main_scene="uid://bljnt6epo7gus"
+run/main_scene="uid://cp8njc4wpaamx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://Global/SceneManager/scene_manager.tscn"
 
 [display]
 
@@ -22,6 +26,10 @@ window/size/viewport_height=270
 window/size/window_width_override=1440
 window/size/window_height_override=810
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+Player=""
 
 [input]
 
@@ -78,6 +86,7 @@ action={
 
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="One-Way Platform"
+2d_physics/layer_5="Player"
 
 [rendering]
 
