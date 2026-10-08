@@ -32,5 +32,6 @@ tile_set = ExtResource("2_4r2rl")
 position = Vector2(104, 120)
 
 [node name="PropsFore" type="TileMapLayer" parent="."]
+z_index = 256
 position = Vector2(4, 10)
 tile_set = ExtResource("2_4r2rl")

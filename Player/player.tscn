@@ -111,7 +111,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-z_index = 256
+z_index = 1
 collision_layer = 16
 collision_mask = 3
 floor_constant_speed = true
@@ -183,5 +183,4 @@ horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -50)
-position_smoothing_enabled = true
 position_smoothing_speed = 8.0

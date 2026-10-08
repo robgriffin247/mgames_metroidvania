@@ -21,15 +21,15 @@ func _ready() -> void:
 	
 	camera.limit_left = int(global_position.x - 16)
 	camera.limit_right = int(global_position.x - 16) + width
-	camera.limit_top = int(global_position.y - 16)
-	camera.limit_bottom = int(global_position.y - 16) + height
+	camera.limit_top = int(global_position.y)
+	camera.limit_bottom = int(global_position.y) + height
 	
 	pass
 	
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
-		var r := Rect2( Vector2(-16, -16), Vector2(width, height) )
+		var r := Rect2( Vector2(-16, 0), Vector2(width, height) )
 		draw_rect(r, Color(0.5,0.98,0.96, 0.9), false, 1)
 		draw_rect(r, Color(0.5,0.98,0.96, 0.4), false, 5)
 
