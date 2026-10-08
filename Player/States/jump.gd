@@ -1,6 +1,5 @@
 class_name PlayerStateJump extends PlayerState
 
-var jump_velocity := 450.0 # 450
 
 func init() -> void:
 	pass
@@ -8,7 +7,7 @@ func init() -> void:
 func enter() -> void:
 	player.animation_player.play("jump")
 	player.animation_player.pause()
-	player.velocity.y = -jump_velocity
+	player.velocity.y = -player.jump_velocity
 	#player.add_debug_indicator(Color.GREEN)
 	
 	if player.previous_state == fall and not Input.is_action_pressed("jump"):
@@ -44,6 +43,6 @@ func physics_process(_delta: float) -> PlayerState:
 
 
 func _set_jump_frame() -> void:
-	var frame : float = remap(player.velocity.y, jump_velocity, 0.0, 0.0, 0.5)
+	var frame : float = remap(player.velocity.y, player.jump_velocity, 0.0, 0.0, 0.5)
 	player.animation_player.seek(frame, true)
 	return

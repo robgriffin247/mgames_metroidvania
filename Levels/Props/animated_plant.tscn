@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://co8w6ps8meo3"]
+
+[ext_resource type="Texture2D" uid="uid://bswlro81roxve" path="res://Levels/Tilesets/Sprites/Forest.png" id="1_xmhlx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp5x3"]
+atlas = ExtResource("1_xmhlx")
+region = Rect2(512, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxfbu"]
+atlas = ExtResource("1_xmhlx")
+region = Rect2(544, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i5m5"]
+atlas = ExtResource("1_xmhlx")
+region = Rect2(576, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6btpy"]
+atlas = ExtResource("1_xmhlx")
+region = Rect2(608, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ye3qp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp5x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxfbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i5m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6btpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i5m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxfbu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedPlant" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ye3qp")
+autoplay = "default"
+frame_progress = 0.8816079
+offset = Vector2(0, -20)

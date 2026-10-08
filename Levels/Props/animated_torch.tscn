@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://chaa7drscqbdh"]
+
+[ext_resource type="Texture2D" uid="uid://bswlro81roxve" path="res://Levels/Tilesets/Sprites/Forest.png" id="1_umvan"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0qr2"]
+atlas = ExtResource("1_umvan")
+region = Rect2(512, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2una"]
+atlas = ExtResource("1_umvan")
+region = Rect2(544, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4exo6"]
+atlas = ExtResource("1_umvan")
+region = Rect2(576, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kvg2"]
+atlas = ExtResource("1_umvan")
+region = Rect2(608, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qba6l"]
+atlas = ExtResource("1_umvan")
+region = Rect2(640, 256, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wubvs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0qr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2una")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4exo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kvg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qba6l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="AnimatedTorch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wubvs")
+autoplay = "default"
+frame_progress = 0.5248965
+offset = Vector2(0, -32)

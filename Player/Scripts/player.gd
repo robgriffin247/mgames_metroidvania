@@ -3,7 +3,8 @@ class_name Player extends CharacterBody2D
 const JUMP_INDICATOR = preload("uid://dkb3bgq33xpsd")
 
 #region /// Exports
-@export_range(1.0, 1000.0, 1.0) var run_speed := 190.0 # 190
+@export_range(1.0, 1000.0, 1.0) var run_speed := 190.0
+@export_range(1.0, 1000.0, 1.0) var jump_velocity := 470.0
 @export var max_fall_velocity := 600.0
 #endregion
 
