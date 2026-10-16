@@ -3,12 +3,18 @@ extends CanvasLayer
 signal load_scene_started
 signal new_scene_ready(target_name: String, offset: Vector2)
 signal load_scene_finished
+signal scene_entered(uid:String)
+
+var current_scene_uid : String
 
 @onready var fade: Control = $Fade
 
 func _ready() -> void:
 	fade.visible = false
 	await get_tree().process_frame
+	var scene := get_tree().current_scene
+	if scene:
+		current_scene_uid = ResourceUID.path_to_uid(scene.scene_file_path)
 	load_scene_finished.emit()
 
 func transition_scene(
@@ -23,8 +29,11 @@ func transition_scene(
 	load_scene_started.emit()
 	await fade_screen(fade_position, Vector2.ZERO)
 	get_tree().change_scene_to_file(new_scene)
+	current_scene_uid = ResourceUID.path_to_uid(new_scene)
+	scene_entered.emit(current_scene_uid)
 	await get_tree().scene_changed
 	new_scene_ready.emit(target_area, player_offset)
+	await get_tree().process_frame
 	await fade_screen(Vector2.ZERO, -fade_position)
 	fade.visible = false
 	get_tree().paused = false

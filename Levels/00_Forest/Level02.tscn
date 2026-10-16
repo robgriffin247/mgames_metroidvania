@@ -72,7 +72,7 @@ target_area_name = "LevelTransition2"
 position = Vector2(2032, 224)
 size = 8
 location = 1
-target_scene = "uid://b36xnd7vbmdp7"
+target_scene = "uid://dmawky31cuugf"
 target_area_name = "LevelTransition1"
 
 [node name="LevelTransition3" parent="LevelComponents" instance=ExtResource("4_1fgoe")]

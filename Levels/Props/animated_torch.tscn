@@ -47,13 +47,13 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_umvan"]
-offsets = PackedFloat32Array(0.43700787, 0.70866144)
+offsets = PackedFloat32Array(0, 0.6979167)
 colors = PackedColorArray(1.8582071, 1.7373093, 1.4741789, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_18pfq"]
 gradient = SubResource("Gradient_umvan")
-width = 256
-height = 256
+width = 384
+height = 384
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -100,10 +100,10 @@ script = ExtResource("2_18pfq")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(1, -41)
 color = Color(0.98039216, 0.83842665, 0.63137263, 1)
-energy = 0.89
 texture = SubResource("GradientTexture2D_18pfq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 z_index = -100
 position = Vector2(-2, -32)
 scale = Vector2(4.390625, 4.703125)

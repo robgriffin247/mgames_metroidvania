@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgvyiamkox5t2"]
+
+[ext_resource type="Texture2D" uid="uid://cb30t3cbikeu2" path="res://General/SavePoint/save_point.png" id="1_2khh5"]
+[ext_resource type="Script" uid="uid://0cpdueoo00g0" path="res://General/SavePoint/save_point.gd" id="1_huif2"]
+[ext_resource type="FontFile" uid="uid://bwcjgxtum7tap" path="res://General/Fonts/alagard.ttf" id="2_prkvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prkvt"]
+size = Vector2(48, 48)
+
+[sub_resource type="Gradient" id="Gradient_prkvt"]
+offsets = PackedFloat32Array(0, 0.47916666)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_huif2"]
+gradient = SubResource("Gradient_prkvt")
+width = 320
+height = 320
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_huif2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_prkvt"]
+resource_name = "game_saved"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 2.7, 3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(-64, 32), Vector2(-64, 14), Vector2(-64, 16), Vector2(-64, 16), Vector2(-64, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4242563, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxtva"]
+_data = {
+&"RESET": SubResource("Animation_huif2"),
+&"game_saved": SubResource("Animation_prkvt")
+}
+
+[node name="SavePoint" type="Node2D"]
+script = ExtResource("1_huif2")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -32)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_prkvt")
+debug_color = Color(0.7019608, 0, 0.65882355, 0.19215687)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_2khh5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -32)
+color = Color(1, 0.58431375, 1, 0.78039217)
+energy = 2.0
+texture = SubResource("GradientTexture2D_huif2")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -96)
+
+[node name="Label" type="Label" parent="Node2D"]
+visible = false
+offset_left = -64.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 31.000011
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_fonts/font = ExtResource("2_prkvt")
+text = "Game Saved"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_cxtva")
+}

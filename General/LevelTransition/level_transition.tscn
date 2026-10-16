@@ -6,6 +6,7 @@
 size = Vector2(32, 32)
 
 [node name="LevelTransition" type="Node2D"]
+z_index = 256
 script = ExtResource("1_a3w54")
 
 [node name="Area2D" type="Area2D" parent="."]

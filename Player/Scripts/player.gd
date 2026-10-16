@@ -25,13 +25,23 @@ var previous_state : PlayerState :
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 #endregion
 
-#region //// Standard variables
+#region /// Standard variables
 var direction := Vector2.ZERO
 var gravity_multiplier := 1.0
 
 var _floor_snap_length := 3.0
 #endregion
 
+#region /// Player Stats
+var hp := 20
+var max_hp := 20
+var abilities : Dictionary = {
+	"dash" : false,
+	"double_jump" : false,
+	"ground_slam" : false,
+	"morph_roll" : false
+}
+#endregion
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self:
@@ -52,6 +62,8 @@ func _physics_process(delta: float) -> void:
 	change_state(current_state.physics_process(delta))
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		MessageBus.player_interacted.emit(self)
 	change_state(current_state.handle_input(event))
 
 func initialise_states() -> void:
