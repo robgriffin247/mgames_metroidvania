@@ -31,7 +31,7 @@ func exit() -> void:
 	
 func handle_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed("jump"):
-		if coyote_timer >= 0:
+		if coyote_timer > 0:
 			return jump
 		else:
 			jump_buffer_timer = jump_buffer_time 
@@ -48,7 +48,7 @@ func process(delta: float) -> PlayerState:
 func physics_process(_delta: float) -> PlayerState:
 	if player.is_on_floor():
 		#player.add_debug_indicator(Color.RED)
-		if jump_buffer_timer >= 0:
+		if jump_buffer_timer > 0:
 			return jump
 		return idle
 	player.velocity.x = player.direction.x * player.run_speed

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjuxaff13e7p3"
-path="res://.godot/imported/light_stream.jpg-80cd31c579a771653eda8b586685a823.ctex"
+uid="uid://bly00aq2ywjo2"
+path="res://.godot/imported/player.png-a1665fc3b4a3dd6c1e330c435d44168b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/light_stream.jpg"
-dest_files=["res://.godot/imported/light_stream.jpg-80cd31c579a771653eda8b586685a823.ctex"]
+source_file="res://Player/Sprites/player.png"
+dest_files=["res://.godot/imported/player.png-a1665fc3b4a3dd6c1e330c435d44168b.ctex"]
 
 [params]
 

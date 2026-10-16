@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://chaa7drscqbdh"]
+[gd_scene load_steps=17 format=3 uid="uid://chaa7drscqbdh"]
 
 [ext_resource type="Texture2D" uid="uid://bswlro81roxve" path="res://Levels/Tilesets/Sprites/Forest.png" id="1_umvan"]
+[ext_resource type="Script" uid="uid://c3k7c32ucj7xa" path="res://General/Scripts/light_flicker.gd" id="2_18pfq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0qr2"]
 atlas = ExtResource("1_umvan")
@@ -45,8 +46,71 @@ animations = [{
 "speed": 11.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_umvan"]
+offsets = PackedFloat32Array(0.43700787, 0.70866144)
+colors = PackedColorArray(1.8582071, 1.7373093, 1.4741789, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18pfq"]
+gradient = SubResource("Gradient_umvan")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_dvmw0"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.17414433, 0.13975425, 0.13975425, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6dih"]
+gradient = SubResource("Gradient_dvmw0")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18pfq"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_18pfq"]
+offsets = PackedFloat32Array(0.14492753, 0.3478261, 0.65217394)
+colors = PackedColorArray(0.96862745, 0.9529412, 0.019607844, 1, 1.0876952, 0.27767205, 0.02553422, 1, 1, 0.38039216, 0.25490198, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dvmw0"]
+gradient = SubResource("Gradient_18pfq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6dih"]
+particle_flag_disable_z = true
+direction = Vector3(0, -20, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 300.0
+angular_velocity_min = -200.00002
+angular_velocity_max = 199.99998
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_dvmw0")
+turbulence_enabled = true
+turbulence_noise_scale = 0.2
+turbulence_influence_max = 0.3
+turbulence_initial_displacement_min = -19.999998
+turbulence_initial_displacement_max = 20.000002
+
 [node name="AnimatedTorch" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_wubvs")
 autoplay = "default"
 frame_progress = 0.5248965
 offset = Vector2(0, -32)
+script = ExtResource("2_18pfq")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, -41)
+color = Color(0.98039216, 0.83842665, 0.63137263, 1)
+energy = 0.89
+texture = SubResource("GradientTexture2D_18pfq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(-2, -32)
+scale = Vector2(4.390625, 4.703125)
+texture = SubResource("GradientTexture2D_n6dih")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_18pfq")
+position = Vector2(0, -30)
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_n6dih")
