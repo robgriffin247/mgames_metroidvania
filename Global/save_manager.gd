@@ -15,9 +15,7 @@ func _ready() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_F5:
-			save_game()
-		elif event.keycode == KEY_F7:
+		if event.keycode == KEY_F7:
 			load_game() 
 		elif event.keycode == KEY_1:
 			current_slot = 0 

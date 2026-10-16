@@ -33,8 +33,8 @@ var _floor_snap_length := 3.0
 #endregion
 
 #region /// Player Stats
-var hp := 20
-var max_hp := 20
+var hp : int = 20
+var max_hp : int = 20
 var abilities : Dictionary = {
 	"dash" : false,
 	"double_jump" : false,
@@ -49,6 +49,7 @@ func _ready() -> void:
 	self.floor_snap_length = _floor_snap_length
 	initialise_states()
 	self.call_deferred("reparent",get_tree().root)
+	MessageBus.player_healed.connect(_on_player_healed)
 	pass
 
 func _process(delta: float) -> void:
@@ -121,3 +122,8 @@ func add_debug_indicator(color: Color = Color.RED) -> void:
 	d.modulate = color
 	await get_tree().create_timer(3.0).timeout
 	d.queue_free()
+
+
+func _on_player_healed(amount: int) -> void:
+	hp += amount
+	print("healed")

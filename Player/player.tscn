@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0yr1gxchtey1"]
+[gd_scene load_steps=23 format=3 uid="uid://b0yr1gxchtey1"]
 
 [ext_resource type="Script" uid="uid://cg3btxsliv3qj" path="res://Player/Scripts/player.gd" id="1_l8h54"]
 [ext_resource type="Script" uid="uid://bqk077h6dd3gb" path="res://Player/States/idle.gd" id="2_4ntmi"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bge2eikdsmox0" path="res://Player/States/fall.gd" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://5ah22wdch3ml" path="res://Player/States/crouch.gd" id="6_fhl08"]
 [ext_resource type="Texture2D" uid="uid://pswh4a8lsuu1" path="res://Player/Sprites/hero.png" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://i6fkme2eos2" path="res://Player/Scripts/input_hints.gd" id="8_00tjw"]
+[ext_resource type="Texture2D" uid="uid://b0sfemtx20cxe" path="res://Player/Sprites/input_icons.png" id="9_x3vf3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtle1"]
 radius = 8.0
@@ -110,16 +112,59 @@ _data = {
 &"run": SubResource("Animation_00tjw")
 }
 
-[sub_resource type="Gradient" id="Gradient_vtle1"]
-offsets = PackedFloat32Array(0.13142857, 0.67142856)
-colors = PackedColorArray(0.98, 0.98, 0.98, 1, 0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_5htga"]
+resource_name = "in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_od3ui"]
-gradient = SubResource("Gradient_vtle1")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="Animation" id="Animation_p5o4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gu6f8"]
+resource_name = "out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gu6f8"]
+_data = {
+&"RESET": SubResource("Animation_p5o4e"),
+&"in": SubResource("Animation_5htga"),
+&"out": SubResource("Animation_gu6f8")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -197,9 +242,17 @@ process_mode = 3
 position = Vector2(0, -50)
 position_smoothing_speed = 8.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(0, -31)
-color = Color(0.98878354, 0.87536657, 0.67646873, 1)
-energy = 0.3
-texture = SubResource("GradientTexture2D_od3ui")
+[node name="InputHints" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.5294118)
+position = Vector2(0, -68)
+script = ExtResource("8_00tjw")
+
+[node name="Sprite2D" type="Sprite2D" parent="InputHints"]
+texture = ExtResource("9_x3vf3")
+hframes = 16
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InputHints"]
+libraries = {
+&"": SubResource("AnimationLibrary_gu6f8")
+}

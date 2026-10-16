@@ -13,11 +13,18 @@ func _process(_delta) -> void:
 	pass
 
 func _on_player_entered(_node: Node2D) -> void:
+	MessageBus.input_hint_changed.emit("interact")
 	MessageBus.player_interacted.connect(_on_player_interacted)
 
 func _on_player_exited(_node: Node2D) -> void:
+	MessageBus.input_hint_changed.emit("")
 	MessageBus.player_interacted.disconnect(_on_player_interacted)
 
 
 func _on_player_interacted(_player: Player) -> void:
-	print("Yayyy")
+	MessageBus.input_hint_changed.emit("")
+	SaveManager.save_game()
+	MessageBus.player_healed.emit(999)
+
+	animation_player.play("game_saved")
+	animation_player.seek(0)
