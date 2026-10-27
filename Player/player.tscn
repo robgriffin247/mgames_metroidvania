@@ -112,6 +112,21 @@ _data = {
 &"run": SubResource("Animation_00tjw")
 }
 
+[sub_resource type="Animation" id="Animation_p5o4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_5htga"]
 resource_name = "in"
 length = 0.1
@@ -126,21 +141,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_p5o4e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_gu6f8"]
@@ -225,25 +225,15 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="Debugs" type="Node2D" parent="."]
-visible = false
-
-[node name="StateLabel" type="Label" parent="Debugs"]
-offset_left = -20.0
-offset_top = -66.0
-offset_right = 20.0
-offset_bottom = -48.0
-theme_override_font_sizes/font_size = 10
-text = "label"
-horizontal_alignment = 1
-
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
 position = Vector2(0, -50)
 position_smoothing_speed = 8.0
 
 [node name="InputHints" type="Node2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.5294118)
+z_index = 1000
 position = Vector2(0, -68)
 script = ExtResource("8_00tjw")
 
@@ -256,3 +246,15 @@ frame = 12
 libraries = {
 &"": SubResource("AnimationLibrary_gu6f8")
 }
+
+[node name="Debugs" type="Node2D" parent="."]
+visible = false
+
+[node name="StateLabel" type="Label" parent="Debugs"]
+offset_left = -20.0
+offset_top = -66.0
+offset_right = 20.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 10
+text = "label"
+horizontal_alignment = 1

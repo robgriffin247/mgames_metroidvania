@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=4 uid="uid://dsgl6gashriqk"]
 
-[ext_resource type="TileSet" uid="uid://cqyn8ul8nkhv1" path="res://Levels/World01/world01.tres" id="1_oofog"]
+[ext_resource type="TileSet" uid="uid://cqyn8ul8nkhv1" path="res://Levels/Scenes/Hunneberg/world01.tres" id="1_oofog"]
 [ext_resource type="PackedScene" uid="uid://b0yr1gxchtey1" path="res://Player/player.tscn" id="2_fq3i8"]
-[ext_resource type="TileSet" uid="uid://bhrxak8y5vctr" path="res://Levels/World01/hunneberg.tres" id="3_22wy5"]
+[ext_resource type="TileSet" uid="uid://bhrxak8y5vctr" path="res://Levels/Scenes/Hunneberg/hunneberg.tres" id="3_22wy5"]
 [ext_resource type="Script" uid="uid://fdaks3uswkq1" path="res://General/Scripts/level_bounds.gd" id="3_fq3i8"]
 
 [node name="Level" type="Node2D"]

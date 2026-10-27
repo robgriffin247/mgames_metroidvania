@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bgvyiamkox5t2"]
 
-[ext_resource type="Texture2D" uid="uid://cb30t3cbikeu2" path="res://General/SavePoint/save_point.png" id="1_2khh5"]
-[ext_resource type="Script" uid="uid://0cpdueoo00g0" path="res://General/SavePoint/save_point.gd" id="1_huif2"]
+[ext_resource type="Texture2D" uid="uid://cb30t3cbikeu2" path="res://Levels/SavePoint/save_point.png" id="1_2khh5"]
+[ext_resource type="Script" uid="uid://0cpdueoo00g0" path="res://Levels/SavePoint/save_point.gd" id="1_huif2"]
 [ext_resource type="FontFile" uid="uid://bwcjgxtum7tap" path="res://General/Fonts/alagard.ttf" id="2_prkvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prkvt"]

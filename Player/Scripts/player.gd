@@ -33,8 +33,17 @@ var _floor_snap_length := 3.0
 #endregion
 
 #region /// Player Stats
-var hp : int = 20
-var max_hp : int = 20
+var hp : float = 20.0 : 
+	set(value):
+		hp = clampf(value, 0.0, max_hp)
+		MessageBus.player_health_changed.emit(hp, max_hp)
+		
+var max_hp : float = 20.0 : 
+	set(value):
+		max_hp = clampf(value, 20.0, value)
+		hp = clampf(hp, 0.0, max_hp)
+		MessageBus.player_health_changed.emit(hp, max_hp)
+		
 var abilities : Dictionary = {
 	"dash" : false,
 	"double_jump" : false,
@@ -49,8 +58,11 @@ func _ready() -> void:
 	self.floor_snap_length = _floor_snap_length
 	initialise_states()
 	self.call_deferred("reparent",get_tree().root)
+	MessageBus.player_health_changed.emit(hp, max_hp)
 	MessageBus.player_healed.connect(_on_player_healed)
-	pass
+	MessageBus.return_to_title_screen.connect(queue_free)
+	
+
 
 func _process(delta: float) -> void:
 	update_direction()
@@ -65,7 +77,16 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		MessageBus.player_interacted.emit(self)
+	
+	elif event.is_action_pressed("pause"):
+		get_tree().paused = true
+		var pause_menu : PauseMenu = load("uid://esus7kwhwn28").instantiate()
+		add_child(pause_menu)
+		return
+		
 	change_state(current_state.handle_input(event))
+	
+	
 
 func initialise_states() -> void:
 	states = []
@@ -124,6 +145,5 @@ func add_debug_indicator(color: Color = Color.RED) -> void:
 	d.queue_free()
 
 
-func _on_player_healed(amount: int) -> void:
+func _on_player_healed(amount: float) -> void:
 	hp += amount
-	print("healed")

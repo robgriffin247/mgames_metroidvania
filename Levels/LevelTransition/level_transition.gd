@@ -1,5 +1,5 @@
 @tool
-@icon("res://General/LevelTransition/level_transition.svg")
+@icon("uid://d1v7cl4gqwiq3")
 class_name LevelTransition extends Node2D
 
 
