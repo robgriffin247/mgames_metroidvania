@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dmawky31cuugf"]
+[gd_scene load_steps=9 format=4 uid="uid://dmawky31cuugf"]
 
 [ext_resource type="PackedScene" uid="uid://k50d0e07i54w" path="res://Levels/LevelTransition/level_transition.tscn" id="1_1fd6b"]
 [ext_resource type="Script" uid="uid://fdaks3uswkq1" path="res://General/Scripts/level_bounds.gd" id="2_wstwf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnvagvthfp2j2" path="res://Player/player_spawn.tscn" id="5_x1drx"]
 [ext_resource type="PackedScene" uid="uid://chaa7drscqbdh" path="res://Levels/Props/animated_torch.tscn" id="6_hkw10"]
 [ext_resource type="PackedScene" uid="uid://bquyvh1oidssw" path="res://Levels/DoorSwitch/door.tscn" id="7_fl2od"]
+[ext_resource type="PackedScene" uid="uid://du1n6km3guu6a" path="res://Levels/DoorSwitch/switch.tscn" id="8_r1pos"]
 
 [node name="Level" type="Node2D"]
 
@@ -54,3 +55,6 @@ blend_mode = 2
 
 [node name="Door" parent="." instance=ExtResource("7_fl2od")]
 position = Vector2(351, 224)
+
+[node name="Switch" parent="Door" instance=ExtResource("8_r1pos")]
+position = Vector2(88, 4)
